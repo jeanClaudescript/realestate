@@ -96,8 +96,8 @@ export function HomePage() {
                 <span className="truncate">{t('hero.bookVisit')}</span>
               </Button>
             </Link>
-            <Link to="/dashboard/owner" className="sm:w-auto">
-              <Button variant="ghost" size="md" fullWidth className="sm:!w-auto sm:min-h-[48px] min-h-[44px] text-sm sm:text-base px-2">
+            <Link to="/dashboard/owner" className="sm:w-auto col-span-2 sm:col-span-1">
+              <Button variant="outline" size="md" fullWidth className="sm:!w-auto sm:min-h-[48px] min-h-[44px] text-sm sm:text-base px-2 !border-white/40 !text-white hover:!bg-white/10 dark:!border-white/40">
                 {t('hero.list')}
               </Button>
             </Link>
@@ -140,13 +140,12 @@ export function HomePage() {
       </section>
 
       {/* Map Preview */}
-      <section className="py-20 bg-brand-charcoal dark:bg-brand-slate">
+      <section className="py-20 section-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={t('home.map.eyebrow')}
             title={t('home.map.title')}
             subtitle={t('home.map.subtitle')}
-            light
             align="center"
           />
           <MapPreview />
@@ -210,16 +209,15 @@ export function HomePage() {
       </section>
 
       {/* Survey Intelligence */}
-      <section id="survey" className="py-20 bg-brand-charcoal text-white">
+      <section id="survey" className="py-20 section-emphasis">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <SectionHeader
               eyebrow={t('home.survey.eyebrow')}
               title={t('home.survey.title')}
               subtitle={t('home.survey.subtitle')}
-              light
             />
-            <ul className="space-y-3 text-white/70">
+            <ul className="space-y-3 text-muted">
               {[
                 'RDB cadastral & GIS map interface',
                 'Plot boundary visualization',
@@ -327,12 +325,12 @@ export function HomePage() {
       </section>
 
       {/* CTA Band */}
-      <section className="py-16 bg-brand-charcoal">
+      <section className="py-16 section-emphasis">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-white font-semibold mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4 text-brand-charcoal dark:text-white">
             {t('home.cta.title')}
           </h2>
-          <p className="text-white/60 mb-8">
+          <p className="text-muted mb-8">
             {t('home.cta.subtitle')}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -342,7 +340,7 @@ export function HomePage() {
               </Button>
             </Link>
             <Button
-              variant="ghost"
+              variant="outline"
               size="lg"
               icon={<Play className="w-5 h-5" />}
               onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}

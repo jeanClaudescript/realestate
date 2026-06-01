@@ -33,7 +33,7 @@ export function HeroSearch() {
   }
 
   const inputClass =
-    'w-full bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-white placeholder:text-white/40 focus:outline-none focus:border-brand-gold/50 min-h-[44px] sm:min-h-[48px]'
+    'w-full bg-black/[0.03] dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-brand-charcoal dark:text-white placeholder:text-brand-charcoal/40 dark:placeholder:text-white/40 focus:outline-none focus:border-brand-gold/50 min-h-[44px] sm:min-h-[48px]'
 
   return (
     <motion.div
@@ -52,7 +52,7 @@ export function HeroSearch() {
               className={`flex items-center justify-center gap-1 px-1 sm:px-4 py-2 rounded-lg sm:rounded-2xl text-[10px] min-[380px]:text-xs sm:text-sm font-medium min-h-[36px] sm:min-h-[44px] transition-all ${
                 activeTab === id
                   ? 'bg-brand-gold text-brand-charcoal'
-                  : 'text-white/70 hover:bg-white/5'
+                  : 'text-brand-charcoal/70 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5'
               }`}
             >
               <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
@@ -63,7 +63,7 @@ export function HeroSearch() {
 
         <div className="p-1 sm:p-2">
           <div className="relative">
-            <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10 pointer-events-none" />
+            <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-charcoal/40 dark:text-white/40 z-10 pointer-events-none" />
             <input
               list="rwanda-locations"
               value={location}
@@ -89,7 +89,7 @@ export function HeroSearch() {
           <button
             type="button"
             onClick={() => navigate('/properties')}
-            className="hidden sm:flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-white/70 hover:bg-white/5 text-sm border border-white/10 min-h-[48px] w-full"
+            className="hidden sm:flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-brand-charcoal/70 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5 text-sm border border-black/10 dark:border-white/10 min-h-[48px] w-full"
           >
             <SlidersHorizontal className="w-4 h-4" />
             {t('search.filters')}

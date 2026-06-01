@@ -37,12 +37,12 @@ export function MobileFilterBar({
           <button
             type="button"
             onClick={() => onOpenChange(true)}
-            className="flex-1 flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-xl bg-brand-charcoal dark:bg-brand-gold text-white dark:text-brand-charcoal text-sm font-semibold"
+            className="flex-1 flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-xl bg-brand-gold text-brand-charcoal text-sm font-semibold shadow-sm"
           >
             <SlidersHorizontal className="w-4 h-4" />
             {t('filters.title')}
             {activeCount > 0 && (
-              <span className="bg-brand-gold dark:bg-brand-charcoal text-brand-charcoal dark:text-white text-xs px-2 py-0.5 rounded-full">
+              <span className="bg-brand-charcoal/10 dark:bg-brand-charcoal text-brand-charcoal dark:text-white text-xs px-2 py-0.5 rounded-full">
                 {activeCount}
               </span>
             )}

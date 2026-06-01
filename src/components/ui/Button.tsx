@@ -14,10 +14,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const variants: Record<Variant, string> = {
   primary:
     'bg-brand-gold text-brand-charcoal hover:bg-brand-gold-light shadow-lg shadow-brand-gold/20',
-  secondary: 'bg-brand-charcoal text-white hover:bg-brand-slate',
+  secondary:
+    'bg-brand-charcoal text-white hover:bg-brand-slate dark:bg-white dark:text-brand-charcoal dark:hover:bg-brand-cream',
   outline:
-    'border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-charcoal',
-  ghost: 'text-white hover:bg-white/10',
+    'border-2 border-brand-gold text-brand-gold-dark hover:bg-brand-gold hover:text-brand-charcoal dark:text-brand-gold',
+  ghost:
+    'text-brand-charcoal hover:bg-black/5 dark:text-white dark:hover:bg-white/10',
   whatsapp: 'bg-[#25D366] text-white hover:bg-[#20BD5A]',
 }
 

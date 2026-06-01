@@ -66,8 +66,14 @@
   .text-gradient-gold {
     @apply bg-gradient-to-r from-brand-gold via-brand-gold-light to-brand-gold bg-clip-text text-transparent;
   }
+  /* Hero search / overlays — readable in light & dark */
   .glass-dark {
-    @apply bg-brand-charcoal/80 backdrop-blur-xl border border-white/10;
+    @apply bg-white/90 backdrop-blur-xl border border-black/10 shadow-luxury text-brand-charcoal
+      dark:bg-brand-charcoal/85 dark:border-white/10 dark:text-white;
+  }
+  /* Floating UI on photos / maps — always dark for contrast */
+  .glass-on-media {
+    @apply bg-brand-charcoal/85 backdrop-blur-xl border border-white/15 text-white;
   }
   .glass-light {
     @apply bg-white/90 dark:bg-brand-slate/95 backdrop-blur-xl border border-black/5 dark:border-white/10;
@@ -78,8 +84,31 @@
   .surface-muted {
     @apply bg-brand-cream dark:bg-white/5;
   }
+  .section-surface {
+    @apply bg-white text-brand-charcoal dark:bg-brand-slate dark:text-white;
+  }
+  .section-muted {
+    @apply bg-brand-mist text-brand-charcoal dark:bg-brand-charcoal dark:text-white;
+  }
+  .section-accent {
+    @apply bg-brand-cream text-brand-charcoal dark:bg-brand-charcoal dark:text-white;
+  }
+  .section-emphasis {
+    @apply bg-brand-cream border-y border-black/5 text-brand-charcoal
+      dark:bg-brand-charcoal dark:border-white/10 dark:text-white;
+  }
+  .footer-surface {
+    @apply bg-white border-t border-black/10 text-brand-charcoal
+      dark:bg-brand-charcoal dark:border-white/10 dark:text-white;
+  }
   .text-muted {
     @apply text-brand-charcoal/60 dark:text-white/60;
+  }
+  .text-footer-muted {
+    @apply text-brand-charcoal/60 dark:text-white/60;
+  }
+  .border-subtle {
+    @apply border-black/10 dark:border-white/10;
   }
   .touch-target {
     @apply min-h-[44px] min-w-[44px];

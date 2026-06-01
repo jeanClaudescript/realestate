@@ -100,11 +100,11 @@ export function PropertyDetailPage() {
   return (
     <PageLayout>
       {/* Gallery Hero */}
-      <section className="pt-16 sm:pt-20 bg-brand-charcoal overflow-hidden">
+      <section className="pt-16 sm:pt-20 bg-brand-mist dark:bg-brand-charcoal overflow-hidden">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
           <Link
             to="/properties"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm min-h-[44px]"
+            className="inline-flex items-center gap-2 text-brand-charcoal/70 hover:text-brand-charcoal dark:text-white/60 dark:hover:text-white text-sm min-h-[44px]"
           >
             <ChevronLeft className="w-4 h-4 shrink-0" />
             {t('detail.back')}
@@ -133,7 +133,7 @@ export function PropertyDetailPage() {
             <button
               type="button"
               onClick={handleVideo}
-              className="absolute bottom-4 left-4 flex items-center gap-2 glass-dark rounded-xl px-4 py-2.5 text-white text-sm min-h-[44px] hover:bg-white/10 transition-colors"
+              className="absolute bottom-4 left-4 flex items-center gap-2 glass-on-media rounded-xl px-4 py-2.5 text-sm min-h-[44px] hover:bg-white/10 transition-colors"
             >
               <Play className="w-4 h-4" />
               <span className="hidden sm:inline">Video Walkthrough</span>

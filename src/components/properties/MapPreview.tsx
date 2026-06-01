@@ -85,7 +85,7 @@ export function MapPreview({
 
       {/* Top toolbar */}
       <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-20 flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-        <div className="glass-dark rounded-xl sm:rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 max-w-md">
+        <div className="glass-on-media rounded-xl sm:rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 max-w-md">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-8 h-8 rounded-lg bg-brand-gold/20 flex items-center justify-center border border-brand-gold/30">
               <Layers className="w-4 h-4 text-brand-gold" />
@@ -100,7 +100,7 @@ export function MapPreview({
         </div>
 
         <div className="flex items-center gap-2 self-end sm:self-auto">
-          <div className="glass-dark rounded-xl p-1 flex gap-0.5">
+          <div className="glass-on-media rounded-xl p-1 flex gap-0.5">
             <button
               type="button"
               onClick={() => setLayer('listings')}
@@ -124,7 +124,7 @@ export function MapPreview({
             href={googleMapsKigaliUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="glass-dark rounded-xl p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/80 hover:text-brand-gold transition-colors"
+            className="glass-on-media rounded-xl p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/80 hover:text-brand-gold transition-colors"
             aria-label="Open in Google Maps"
           >
             <Maximize2 className="w-4 h-4" />
@@ -199,7 +199,7 @@ export function MapPreview({
 
       {/* Bottom legend */}
       <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 flex flex-wrap items-end justify-between gap-2">
-        <div className="glass-dark rounded-xl px-3 py-2 flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-white/75">
+        <div className="glass-on-media rounded-xl px-3 py-2 flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-white/75">
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-brand-gold border border-white" />
             {t('listings.mapView')}
@@ -211,7 +211,7 @@ export function MapPreview({
         </div>
 
         {listings.length > 0 && (
-          <div className="glass-dark rounded-xl px-3 py-2 flex items-center gap-3 text-[11px] sm:text-xs text-white/80">
+          <div className="glass-on-media rounded-xl px-3 py-2 flex items-center gap-3 text-[11px] sm:text-xs text-white/80">
             {houseCount > 0 && (
               <span className="flex items-center gap-1">
                 <Home className="w-3 h-3 text-brand-gold" />

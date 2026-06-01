@@ -4,6 +4,7 @@ interface SectionHeaderProps {
   eyebrow?: string
   title: string
   subtitle?: string
+  /** White text — only use on dark backgrounds (hero, video). Prefer default on light sections. */
   light?: boolean
   align?: 'left' | 'center'
 }

@@ -94,7 +94,7 @@ export function PropertyFilters({
               onClick={() => onTypeToggle(id)}
               className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors min-h-[44px] ${
                 selectedTypes.includes(id)
-                  ? 'bg-brand-charcoal text-white dark:bg-brand-gold dark:text-brand-charcoal'
+                  ? 'bg-brand-gold text-brand-charcoal shadow-sm'
                   : 'bg-brand-cream dark:bg-white/10 text-brand-charcoal/70 dark:text-white/80 hover:bg-brand-gold/20'
               }`}
             >

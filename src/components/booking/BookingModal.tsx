@@ -63,22 +63,22 @@ export function BookingModal({ type, property, onClose }: BookingModalProps) {
           role="dialog"
           aria-modal="true"
         >
-          <div className="bg-brand-charcoal px-6 py-5 flex items-start justify-between sticky top-0 z-10">
+          <div className="bg-brand-cream dark:bg-brand-charcoal px-6 py-5 flex items-start justify-between sticky top-0 z-10 border-b border-subtle">
             <div className="min-w-0 pr-4">
-              <p className="text-brand-gold text-xs font-semibold uppercase tracking-wider mb-1">
+              <p className="text-brand-gold-dark dark:text-brand-gold text-xs font-semibold uppercase tracking-wider mb-1">
                 {isVisit ? t('detail.bookVisit') : t('detail.reserve')}
               </p>
-              <h3 className="font-display text-xl text-white font-semibold line-clamp-2">
+              <h3 className="font-display text-xl text-brand-charcoal dark:text-white font-semibold line-clamp-2">
                 {property.title}
               </h3>
-              <p className="text-white/50 text-sm mt-1">
+              <p className="text-muted text-sm mt-1">
                 {property.location}, {property.city}
               </p>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="p-2.5 rounded-full hover:bg-white/10 text-white/70 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
+              className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-brand-charcoal/70 dark:text-white/70 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
               aria-label={t('compare.close')}
             >
               <X className="w-5 h-5" />

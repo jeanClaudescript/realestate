@@ -38,9 +38,9 @@ export function LeadershipSection() {
                 <p className="text-white/80 text-sm mt-1">{ceo.fullTitle}</p>
               </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 lg:right-8 glass-dark rounded-2xl px-5 py-4 hidden sm:block">
-              <p className="text-2xl font-display font-semibold text-brand-gold">{ceo.listingsSold}</p>
-              <p className="text-xs text-white/60">{t('ceo.listingsSold')}</p>
+            <div className="absolute -bottom-4 -right-4 lg:right-8 surface-card rounded-2xl px-5 py-4 hidden sm:block shadow-luxury">
+              <p className="text-2xl font-display font-semibold text-brand-gold-dark">{ceo.listingsSold}</p>
+              <p className="text-xs text-muted">{t('ceo.listingsSold')}</p>
             </div>
           </motion.div>
 

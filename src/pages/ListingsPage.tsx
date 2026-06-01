@@ -117,18 +117,17 @@ export function ListingsPage() {
 
   return (
     <PageLayout>
-      <section className="pt-20 sm:pt-24 pb-8 bg-brand-charcoal dark:bg-brand-slate text-white">
+      <section className="pt-20 sm:pt-24 pb-8 section-surface border-b border-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={t('listings.eyebrow')}
             title={t('listings.title')}
             subtitle={`${filtered.length} ${t('listings.subtitle')}`}
-            light
           />
         </div>
       </section>
 
-      <section className="py-8 pb-24 sm:pb-28 bg-brand-mist dark:bg-brand-charcoal">
+      <section className="py-8 pb-24 sm:pb-28 section-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-2 lg:mb-6">
             <p className="text-muted text-sm hidden lg:block">
@@ -142,7 +141,7 @@ export function ListingsPage() {
                 onClick={() => setView('grid')}
                 className={`p-2.5 rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center ${
                   view === 'grid'
-                    ? 'bg-brand-charcoal text-white dark:bg-brand-gold dark:text-brand-charcoal'
+                    ? 'bg-brand-gold text-brand-charcoal shadow-sm'
                     : 'surface-card text-brand-charcoal dark:text-white'
                 }`}
                 aria-label={t('listings.gridView')}
@@ -154,7 +153,7 @@ export function ListingsPage() {
                 onClick={() => setView('split')}
                 className={`p-2.5 rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center ${
                   view === 'split'
-                    ? 'bg-brand-charcoal text-white dark:bg-brand-gold dark:text-brand-charcoal'
+                    ? 'bg-brand-gold text-brand-charcoal shadow-sm'
                     : 'surface-card text-brand-charcoal dark:text-white'
                 }`}
                 aria-label={t('listings.mapView')}
