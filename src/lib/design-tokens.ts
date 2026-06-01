@@ -2,7 +2,7 @@
 export const brand = {
   name: 'Car House Real Estate',
   shortName: 'Car House',
-  tagline: 'Beautiful houses, premium cars & verified property across Rwanda.',
+  tagline: 'Rwanda\'s premium marketplace for land, homes & investments.',
   domain: 'carhouse.rw',
   headquarters: 'Kigali, Rwanda',
   ceo: {

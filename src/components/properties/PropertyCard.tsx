@@ -10,6 +10,10 @@ import {
   Bath,
   GitCompare,
   CheckCircle2,
+  Gauge,
+  Fuel,
+  Settings2,
+  Calendar,
 } from 'lucide-react'
 import type { Property } from '@/types/property'
 import { formatPrice, agents } from '@/lib/mock-data'
@@ -18,6 +22,8 @@ import { Badge } from '@/components/ui/Badge'
 import { TrustScore } from '@/components/ui/TrustScore'
 import { Button } from '@/components/ui/Button'
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
+import { CallButton } from '@/components/ui/CallButton'
+import { getPropertyOwnerPhone } from '@/lib/contact'
 import { useLocale } from '@/context/LocaleContext'
 
 interface PropertyCardProps {
@@ -40,6 +46,10 @@ export function PropertyCard({
   const agent = agents.find((a) => a.id === property.agentId)
   const statusKey = `status.${property.status}` as const
   const agentPhone = agent?.whatsapp ?? '788000000'
+  const ownerPhone = getPropertyOwnerPhone(property, agents)
+  const isCar = property.type === 'car'
+  const v = property.vehicle
+  const typeLabel = t(`filters.type.${property.type}` as 'filters.type.house')
 
   return (
     <motion.article
@@ -110,13 +120,19 @@ export function PropertyCard({
           </button>
         </div>
 
-        {/* WhatsApp on image — always visible on mobile, hover on desktop */}
+        {/* Call & WhatsApp on image — always visible on mobile, hover on desktop */}
         <div
-          className="absolute bottom-3 right-3 z-10 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+          className="absolute bottom-3 right-3 z-10 flex gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
           onClick={(e) => e.preventDefault()}
           onKeyDown={(e) => e.stopPropagation()}
           role="presentation"
         >
+          <CallButton
+            phone={ownerPhone}
+            variant="icon"
+            stopPropagation
+            ariaLabel={t('detail.call')}
+          />
           <WhatsAppButton
             phone={agentPhone}
             property={property}
@@ -136,7 +152,7 @@ export function PropertyCard({
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="min-w-0 flex-1">
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-gold-dark mb-1">
-              {property.type}
+              {typeLabel}
             </p>
             <h3 className="font-display text-base sm:text-lg font-semibold text-brand-charcoal dark:text-white line-clamp-2">
               {property.title}
@@ -153,23 +169,46 @@ export function PropertyCard({
         </p>
 
         <div className="flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm text-brand-charcoal/70 mb-3">
-          {property.plotSize && (
-            <span className="flex items-center gap-1">
-              <Maximize2 className="w-3.5 h-3.5" />
-              {property.plotSize}
-            </span>
-          )}
-          {property.bedrooms != null && (
-            <span className="flex items-center gap-1">
-              <Bed className="w-3.5 h-3.5" />
-              {property.bedrooms} {t('card.bed')}
-            </span>
-          )}
-          {property.bathrooms != null && (
-            <span className="flex items-center gap-1">
-              <Bath className="w-3.5 h-3.5" />
-              {property.bathrooms} {t('card.bath')}
-            </span>
+          {isCar && v ? (
+            <>
+              <span className="flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5" />
+                {v.year} {t('card.year')}
+              </span>
+              <span className="flex items-center gap-1">
+                <Gauge className="w-3.5 h-3.5" />
+                {v.mileage}
+              </span>
+              <span className="flex items-center gap-1">
+                <Settings2 className="w-3.5 h-3.5" />
+                {v.transmission}
+              </span>
+              <span className="flex items-center gap-1">
+                <Fuel className="w-3.5 h-3.5" />
+                {v.fuel}
+              </span>
+            </>
+          ) : (
+            <>
+              {property.plotSize && (
+                <span className="flex items-center gap-1">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  {property.plotSize}
+                </span>
+              )}
+              {property.bedrooms != null && (
+                <span className="flex items-center gap-1">
+                  <Bed className="w-3.5 h-3.5" />
+                  {property.bedrooms} {t('card.bed')}
+                </span>
+              )}
+              {property.bathrooms != null && (
+                <span className="flex items-center gap-1">
+                  <Bath className="w-3.5 h-3.5" />
+                  {property.bathrooms} {t('card.bath')}
+                </span>
+              )}
+            </>
           )}
         </div>
 

@@ -33,11 +33,10 @@ export function Header() {
   }, [open])
 
   const nav = [
-    { label: t('nav.houses'), href: '/houses' },
-    { label: t('nav.cars'), href: '/cars' },
     { label: t('nav.buy'), href: '/properties?mode=buy' },
     { label: t('nav.rent'), href: '/properties?mode=rent' },
     { label: t('nav.land'), href: '/properties?type=land' },
+    { label: t('nav.commercial'), href: '/properties?type=commercial' },
     { label: t('nav.invest'), href: '/#invest' },
   ]
 

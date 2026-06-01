@@ -27,11 +27,6 @@ import { LeadershipSection } from '@/components/home/LeadershipSection'
 import { StatsBar } from '@/components/home/StatsBar'
 import { PaymentMethods } from '@/components/home/PaymentMethods'
 import { AIRecommendations } from '@/components/home/AIRecommendations'
-import { CategoryShowcase } from '@/components/home/CategoryShowcase'
-import { VehicleCard } from '@/components/vehicles/VehicleCard'
-import { getBeautifulHouses } from '@/lib/catalog'
-import { featuredVehicles } from '@/lib/vehicles-mock-data'
-
 const trustFeatureKeys = [
   { icon: Shield, titleKey: 'home.trust.verified', descKey: 'home.trust.verifiedDesc' },
   { icon: Map, titleKey: 'home.trust.survey', descKey: 'home.trust.surveyDesc' },
@@ -41,8 +36,6 @@ const trustFeatureKeys = [
 
 export function HomePage() {
   const { t } = useLocale()
-  const beautifulHouses = getBeautifulHouses(6)
-  const premiumCars = featuredVehicles.slice(0, 6)
   const featured = properties.filter((p) => p.featured)
 
   return (
@@ -119,59 +112,10 @@ export function HomePage() {
         </div>
       </section>
 
-      <CategoryShowcase />
-
-      {/* Beautiful Houses — first */}
-      <section className="pt-16 sm:pt-20 pb-16 sm:pb-20 bg-white dark:bg-brand-slate">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow={t('houses.eyebrow')}
-            title={t('houses.homeTitle')}
-            subtitle={t('houses.homeSubtitle')}
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {beautifulHouses.map((p) => (
-              <PropertyCard key={p.id} property={p} />
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/houses">
-              <Button variant="primary" size="lg">
-                {t('houses.explore')}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Cars — second */}
-      <section className="py-16 sm:py-20 bg-brand-charcoal dark:bg-brand-charcoal border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow={t('cars.eyebrow')}
-            title={t('cars.homeTitle')}
-            subtitle={t('cars.homeSubtitle')}
-            light
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {premiumCars.map((v) => (
-              <VehicleCard key={v.id} vehicle={v} />
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/cars">
-              <Button variant="primary" size="lg">
-                {t('cars.explore')}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <StatsBar />
 
-      {/* All properties */}
-      <section className="pt-16 sm:pt-24 pb-20 md:py-28 bg-brand-mist dark:bg-brand-charcoal">
+      {/* Featured Properties */}
+      <section className="pt-24 pb-20 md:py-28 bg-brand-mist dark:bg-brand-charcoal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={t('home.featured.eyebrow')}

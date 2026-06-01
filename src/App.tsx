@@ -2,10 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { HomePage } from '@/pages/HomePage'
 import { ListingsPage } from '@/pages/ListingsPage'
-import { HousesPage } from '@/pages/HousesPage'
-import { CarsPage } from '@/pages/CarsPage'
 import { PropertyDetailPage } from '@/pages/PropertyDetailPage'
-import { VehicleDetailPage } from '@/pages/VehicleDetailPage'
 import { OwnerDashboard } from '@/pages/OwnerDashboard'
 import { AgentDashboard } from '@/pages/AgentDashboard'
 import { AdminPanel } from '@/pages/AdminPanel'
@@ -20,9 +17,6 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/houses" element={<HousesPage />} />
-        <Route path="/cars" element={<CarsPage />} />
-        <Route path="/cars/:id" element={<VehicleDetailPage />} />
         <Route path="/properties" element={<ListingsPage />} />
         <Route path="/properties/:id" element={<PropertyDetailPage />} />
         <Route path="/dashboard/owner" element={<OwnerDashboard />} />

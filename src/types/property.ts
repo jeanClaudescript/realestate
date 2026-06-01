@@ -1,4 +1,14 @@
-export type PropertyType = 'land' | 'house' | 'apartment' | 'commercial'
+export type PropertyType = 'land' | 'house' | 'apartment' | 'commercial' | 'car'
+
+export interface VehicleInfo {
+  make: string
+  model: string
+  year: number
+  mileage: string
+  transmission: 'automatic' | 'manual'
+  fuel: string
+  color?: string
+}
 export type ListingMode = 'buy' | 'rent'
 export type PropertyStatus = 'available' | 'reserved' | 'sold' | 'under_offer'
 
@@ -49,8 +59,11 @@ export interface Property {
   investment?: InvestmentInsight
   agentId: string
   featured?: boolean
-  /** Premium / beautiful homes showcase */
-  luxury?: boolean
+  /** Direct owner contact (9-digit Rwanda mobile or formatted) */
+  ownerName?: string
+  ownerPhone?: string
+  /** Present when type is `car` */
+  vehicle?: VehicleInfo
 }
 
 export interface Agent {

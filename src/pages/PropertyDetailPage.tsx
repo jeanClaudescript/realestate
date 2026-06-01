@@ -28,6 +28,8 @@ import { properties, agents, formatPrice } from '@/lib/mock-data'
 import { formatRWF } from '@/lib/rwanda'
 import { BookingModal } from '@/components/booking/BookingModal'
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
+import { CallButton } from '@/components/ui/CallButton'
+import { getPropertyOwnerPhone, getPropertyOwnerName } from '@/lib/contact'
 import { MobilePropertyBar } from '@/components/properties/MobilePropertyBar'
 import { SafeImage } from '@/components/ui/SafeImage'
 import { PhoneDisplay } from '@/components/ui/PhoneDisplay'
@@ -60,6 +62,8 @@ export function PropertyDetailPage() {
     : '—'
 
   const agentPhone = agent?.whatsapp ?? agents[0]?.whatsapp ?? '788000000'
+  const ownerPhone = getPropertyOwnerPhone(property, agents)
+  const ownerName = getPropertyOwnerName(property, agents)
 
   const handleShare = async () => {
     const url = window.location.href
@@ -207,14 +211,27 @@ export function PropertyDetailPage() {
               <Card className="p-6">
                 <h2 className="font-display text-xl font-semibold mb-4">Specifications</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {[
-                    ['Plot Size', property.plotSize],
-                    ['Built Area', property.builtArea],
-                    ['Bedrooms', property.bedrooms?.toString()],
-                    ['Bathrooms', property.bathrooms?.toString()],
-                    ['Status', property.status],
-                    ['Type', property.type],
-                  ]
+                  {(property.type === 'car' && property.vehicle
+                    ? [
+                        [t('detail.make'), property.vehicle.make],
+                        [t('detail.model'), property.vehicle.model],
+                        [t('detail.year'), String(property.vehicle.year)],
+                        [t('detail.mileage'), property.vehicle.mileage],
+                        [t('detail.transmission'), property.vehicle.transmission],
+                        [t('detail.fuel'), property.vehicle.fuel],
+                        [t('detail.color'), property.vehicle.color],
+                        ['Status', property.status],
+                        ['Type', t('filters.type.car')],
+                      ]
+                    : [
+                        ['Plot Size', property.plotSize],
+                        ['Built Area', property.builtArea],
+                        ['Bedrooms', property.bedrooms?.toString()],
+                        ['Bathrooms', property.bathrooms?.toString()],
+                        ['Status', property.status],
+                        ['Type', t(`filters.type.${property.type}` as 'filters.type.house')],
+                      ]
+                  )
                     .filter(([, v]) => v)
                     .map(([label, value]) => (
                       <div
@@ -238,8 +255,8 @@ export function PropertyDetailPage() {
                 </div>
               </Card>
 
-              {/* Survey */}
-              {property.survey && (
+              {/* Survey — land & houses only */}
+              {property.survey && property.type !== 'car' && (
                 <Card className="p-6" id="survey-detail">
                   <h2 className="font-display text-xl font-semibold mb-4 flex items-center gap-2">
                     <Maximize2 className="w-5 h-5 text-brand-gold" />
@@ -338,6 +355,12 @@ export function PropertyDetailPage() {
                 <Card className="p-6 shadow-luxury hidden lg:block">
                   <h3 className="font-display text-lg font-semibold mb-4">Book & Reserve</h3>
                   <div className="space-y-3">
+                    <CallButton
+                      phone={ownerPhone}
+                      variant="full"
+                      label={t('detail.call')}
+                      ariaLabel={`${t('detail.call')} — ${ownerName}`}
+                    />
                     <WhatsAppButton
                       phone={agentPhone}
                       property={property}
@@ -382,6 +405,22 @@ export function PropertyDetailPage() {
                   </div>
                 </Card>
 
+                <Card className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-brand-gold-dark mb-3">
+                    {t('detail.owner')}
+                  </p>
+                  <p className="font-semibold text-lg mb-1">{ownerName}</p>
+                  <PhoneDisplay phone={ownerPhone} className="text-brand-charcoal dark:text-white" size="lg" />
+                  <div className="mt-4">
+                    <CallButton phone={ownerPhone} variant="full" label={t('detail.callNow')} />
+                  </div>
+                  {agent && (
+                    <p className="text-xs text-muted mt-4 pt-4 border-t border-black/5 dark:border-white/10">
+                      Listed by {agent.name} · {brand.ceo.company}
+                    </p>
+                  )}
+                </Card>
+
                 {agent && (
                   <Card className="p-6">
                     <div className="flex items-center gap-4 mb-4">
@@ -402,6 +441,7 @@ export function PropertyDetailPage() {
                   </Card>
                 )}
 
+                {property.type !== 'car' && (
                 <Card className="p-6">
                   <h3 className="font-display text-lg font-semibold mb-4 flex items-center gap-2">
                     <Calculator className="w-5 h-5 text-brand-gold" />
@@ -422,7 +462,9 @@ export function PropertyDetailPage() {
                   </p>
                   <p className="text-xs text-brand-charcoal/40 mt-1">~16.5% p.a. · 20-year term</p>
                 </Card>
+                )}
 
+                {property.type !== 'car' && (
                 <Card className="p-6">
                   <h3 className="font-display text-lg font-semibold mb-4">ROI Calculator</h3>
                   <label className="text-xs text-brand-charcoal/50">Investment period (years)</label>
@@ -439,6 +481,7 @@ export function PropertyDetailPage() {
                     {formatRWF(Number(roiEstimate))}
                   </p>
                 </Card>
+                )}
 
                 <div className="flex items-center gap-2 p-4 rounded-xl bg-emerald-50 border border-emerald-200">
                   <Shield className="w-5 h-5 text-emerald-600" />
@@ -455,6 +498,7 @@ export function PropertyDetailPage() {
       <MobilePropertyBar
         property={property}
         agentPhone={agentPhone}
+        ownerPhone={ownerPhone}
         onBookVisit={() => setBookingModal('visit')}
       />
 
