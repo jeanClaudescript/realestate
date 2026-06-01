@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Card } from '@/components/ui/Card'
 import { properties, testimonials, nearbyLocations } from '@/lib/mock-data'
+import { sortPropertiesForDisplay } from '@/lib/property-order'
 import { useLocale } from '@/context/LocaleContext'
 import { heroPosterImage } from '@/lib/images'
 import { SafeImage } from '@/components/ui/SafeImage'
@@ -36,7 +37,8 @@ const trustFeatureKeys = [
 
 export function HomePage() {
   const { t } = useLocale()
-  const featured = properties.filter((p) => p.featured)
+  const featured = sortPropertiesForDisplay(properties.filter((p) => p.featured))
+  const topListings = sortPropertiesForDisplay(properties)
 
   return (
     <PageLayout>
@@ -161,7 +163,7 @@ export function HomePage() {
               subtitle={t('home.verified.subtitle')}
             />
             <div className="grid sm:grid-cols-2 gap-4">
-              {properties.slice(0, 4).map((p) => (
+              {topListings.slice(0, 4).map((p) => (
                 <Link key={p.id} to={`/properties/${p.id}`}>
                   <Card hover className="p-4 flex gap-4 items-center">
                     <SafeImage

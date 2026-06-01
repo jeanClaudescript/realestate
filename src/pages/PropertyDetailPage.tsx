@@ -31,6 +31,7 @@ import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
 import { CallButton } from '@/components/ui/CallButton'
 import { getPropertyOwnerPhone, getPropertyOwnerName } from '@/lib/contact'
 import { MobilePropertyBar } from '@/components/properties/MobilePropertyBar'
+import { ListingVideoModal } from '@/components/properties/ListingVideoModal'
 import { SafeImage } from '@/components/ui/SafeImage'
 import { PhoneDisplay } from '@/components/ui/PhoneDisplay'
 import { useLocale } from '@/context/LocaleContext'
@@ -47,6 +48,7 @@ export function PropertyDetailPage() {
   const [mortgageAmount, setMortgageAmount] = useState(() => (property?.price ?? 0) * 0.8)
   const [roiYears, setRoiYears] = useState(5)
   const [bookingModal, setBookingModal] = useState<'visit' | 'reserve' | null>(null)
+  const [videoOpen, setVideoOpen] = useState(false)
 
   if (!property) {
     return <Navigate to="/404" replace />
@@ -81,7 +83,7 @@ export function PropertyDetailPage() {
 
   const handleVideo = () => {
     if (property.videoUrl) {
-      window.open(property.videoUrl, '_blank', 'noopener,noreferrer')
+      setVideoOpen(true)
     } else {
       showToast('Video tour coming soon for this listing.')
     }
@@ -146,7 +148,13 @@ export function PropertyDetailPage() {
               />
             </div>
           </div>
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-1 lg:overflow-visible lg:pb-0">
+          <div className="px-2 sm:px-4 lg:px-0">
+            <p className="text-xs text-white/50 lg:text-brand-charcoal/50 mb-2 lg:mb-3">
+              {property.images.length} photos
+              {property.videoUrl ? ' · Video tour' : ''}
+            </p>
+          </div>
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-1 px-2 sm:px-4 lg:px-0 lg:grid lg:grid-cols-2 lg:overflow-visible lg:pb-0 lg:max-h-[520px] lg:overflow-y-auto">
             {property.images.map((img, i) => (
               <button
                 key={img}
@@ -507,6 +515,15 @@ export function PropertyDetailPage() {
         property={property}
         onClose={() => setBookingModal(null)}
       />
+
+      {property.videoUrl && (
+        <ListingVideoModal
+          open={videoOpen}
+          onClose={() => setVideoOpen(false)}
+          videoUrl={property.videoUrl}
+          title={property.title}
+        />
+      )}
     </PageLayout>
   )
 }

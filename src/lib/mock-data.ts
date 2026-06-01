@@ -1,10 +1,15 @@
 import type { Agent, Property, Testimonial } from '@/types/property'
 import { formatRWF } from '@/lib/rwanda'
-import { imagesForProperty, imageForLocation, agentAvatar } from '@/lib/images'
+import { imagesForProperty, imageForLocation, agentAvatar, listingVideo } from '@/lib/images'
 import { formatRwandaPhone } from '@/lib/phone'
+
+const GALLERY = 6
 
 const img = (type: Property['type'], id: string, location: string, n = 3) =>
   imagesForProperty(type, id, n, location)
+
+const houseImg = (id: string, location: string) => imagesForProperty('house', id, GALLERY, location)
+const carImg = (id: string, location: string) => imagesForProperty('car', id, GALLERY, location)
 
 export const agents: Agent[] = [
   {
@@ -52,8 +57,8 @@ export const properties: Property[] = [
     builtArea: '650 m²',
     bedrooms: 5,
     bathrooms: 6,
-    images: img('house', 'p1', 'Kimihurura', 3),
-    videoUrl: '#',
+    images: houseImg('p1', 'Kimihurura'),
+    videoUrl: listingVideo('p1'),
     has360Tour: true,
     verified: true,
     trustScore: 98,
@@ -93,7 +98,8 @@ export const properties: Property[] = [
     builtArea: '720 m²',
     bedrooms: 6,
     bathrooms: 7,
-    images: img('house', 'h1', 'Gacuriro', 3),
+    images: houseImg('h1', 'Gacuriro'),
+    videoUrl: listingVideo('h1'),
     has360Tour: true,
     verified: true,
     trustScore: 99,
@@ -126,7 +132,8 @@ export const properties: Property[] = [
     builtArea: '580 m²',
     bedrooms: 5,
     bathrooms: 6,
-    images: img('house', 'h2', 'Nyarutarama', 3),
+    images: houseImg('h2', 'Nyarutarama'),
+    videoUrl: listingVideo('h2'),
     has360Tour: true,
     verified: true,
     trustScore: 98,
@@ -232,7 +239,8 @@ export const properties: Property[] = [
     builtArea: '480 m²',
     bedrooms: 4,
     bathrooms: 5,
-    images: img('house', 'p5', 'Nyarutarama Garden', 3),
+    images: houseImg('p5', 'Nyarutarama Garden'),
+    videoUrl: listingVideo('p5'),
     has360Tour: true,
     verified: true,
     trustScore: 99,
@@ -285,7 +293,8 @@ export const properties: Property[] = [
     builtArea: '380 m²',
     bedrooms: 4,
     bathrooms: 4,
-    images: img('house', 'p7', 'Gacuriro', 3),
+    images: houseImg('p7', 'Gacuriro'),
+    videoUrl: listingVideo('p7'),
     has360Tour: true,
     verified: true,
     trustScore: 93,
@@ -379,8 +388,9 @@ export const properties: Property[] = [
     location: 'Kacyiru',
     city: 'Kigali',
     country: 'Rwanda',
-    images: img('car', 'c1', 'Kacyiru', 3),
-    has360Tour: false,
+    images: carImg('c1', 'Kacyiru'),
+    videoUrl: listingVideo('c1'),
+    has360Tour: true,
     verified: true,
     trustScore: 97,
     specs: ['4WD', 'Leather interior', 'Full service history', 'Rwanda registered'],
@@ -411,8 +421,9 @@ export const properties: Property[] = [
     location: 'Kimihurura',
     city: 'Kigali',
     country: 'Rwanda',
-    images: img('car', 'c2', 'Kimihurura', 3),
-    has360Tour: false,
+    images: carImg('c2', 'Kimihurura'),
+    videoUrl: listingVideo('c2'),
+    has360Tour: true,
     verified: true,
     trustScore: 98,
     specs: ['AMG styling', 'Panoramic roof', 'Certified pre-owned', 'Warranty'],
@@ -440,8 +451,9 @@ export const properties: Property[] = [
     location: 'Kicukiro',
     city: 'Kigali',
     country: 'Rwanda',
-    images: img('car', 'c3', 'Kicukiro', 3),
-    has360Tour: false,
+    images: carImg('c3', 'Kicukiro'),
+    videoUrl: listingVideo('c3'),
+    has360Tour: true,
     verified: true,
     trustScore: 95,
     specs: ['Tow bar', 'Bed liner', '4x4', 'Fleet maintained'],
@@ -468,8 +480,9 @@ export const properties: Property[] = [
     location: 'Nyarutarama',
     city: 'Kigali',
     country: 'Rwanda',
-    images: img('car', 'c4', 'Nyarutarama', 3),
-    has360Tour: false,
+    images: carImg('c4', 'Nyarutarama'),
+    videoUrl: listingVideo('c4'),
+    has360Tour: true,
     verified: true,
     trustScore: 96,
     specs: ['Autopilot', 'Home charger included', 'Low running cost', 'EV'],
@@ -496,8 +509,9 @@ export const properties: Property[] = [
     location: 'Gacuriro',
     city: 'Kigali',
     country: 'Rwanda',
-    images: img('car', 'c5', 'Gacuriro', 3),
-    has360Tour: false,
+    images: carImg('c5', 'Gacuriro'),
+    videoUrl: listingVideo('c5'),
+    has360Tour: true,
     verified: true,
     trustScore: 97,
     specs: ['M Sport package', 'Harmon Kardon', 'Panoramic roof', 'xDrive'],
@@ -524,8 +538,9 @@ export const properties: Property[] = [
     location: 'Nyarutarama',
     city: 'Kigali',
     country: 'Rwanda',
-    images: img('car', 'c6', 'Nyarutarama', 3),
-    has360Tour: false,
+    images: carImg('c6', 'Nyarutarama'),
+    videoUrl: listingVideo('c6'),
+    has360Tour: true,
     verified: true,
     trustScore: 99,
     specs: ['Air suspension', 'Meridian sound', 'Full LR service', 'Luxury SUV'],

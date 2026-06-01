@@ -9,6 +9,7 @@ import { MapPreview } from '@/components/properties/MapPreview'
 import { CompareModal } from '@/components/properties/CompareModal'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { properties } from '@/lib/mock-data'
+import { sortPropertiesForDisplay } from '@/lib/property-order'
 import { priceFilterMax } from '@/lib/rwanda'
 import { useLocale } from '@/context/LocaleContext'
 import type { PropertyType } from '@/types/property'
@@ -66,7 +67,7 @@ export function ListingsPage() {
       case 'trust':
         return list.sort((a, b) => b.trustScore - a.trustScore)
       default:
-        return list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+        return sortPropertiesForDisplay(list)
     }
   }, [modeParam, typeParam, locationParam, selectedTypes, verifiedOnly, priceRange, sortBy])
 
