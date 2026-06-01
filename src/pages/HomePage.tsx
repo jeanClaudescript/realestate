@@ -42,8 +42,8 @@ export function HomePage() {
 
   return (
     <PageLayout>
-      {/* Cinematic Hero */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+      {/* Hero — compact on mobile so users reach listings faster */}
+      <section className="relative overflow-hidden sm:min-h-[88vh] lg:min-h-[92dvh] sm:flex sm:items-center">
         <video
           autoPlay
           muted
@@ -59,7 +59,7 @@ export function HomePage() {
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/70 via-brand-charcoal/50 to-brand-charcoal" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-20 text-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-[4.5rem] pb-8 sm:pt-24 sm:pb-16 lg:pt-28 lg:pb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,15 +68,15 @@ export function HomePage() {
             <Badge variant="dark" icon={<Sparkles className="w-3 h-3" />}>
               {t('hero.badge')}
             </Badge>
-            <h1 className="font-display text-[1.65rem] leading-tight min-[400px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white mt-4 sm:mt-6 max-w-4xl mx-auto px-1">
+            <h1 className="font-display text-xl leading-snug min-[380px]:text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white mt-2 sm:mt-6 max-w-4xl mx-auto px-1">
               {t('hero.title')}
             </h1>
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed px-1">
+            <p className="mt-2 sm:mt-6 text-sm sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-snug sm:leading-relaxed px-1 line-clamp-2 sm:line-clamp-none">
               {t('hero.subtitle')}
             </p>
           </motion.div>
 
-          <div className="mt-10">
+          <div className="mt-4 sm:mt-10">
             <HeroSearch />
           </div>
 
@@ -84,27 +84,27 @@ export function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="flex flex-col w-full max-w-sm sm:max-w-none sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10 px-2 sm:px-0"
+            className="grid grid-cols-2 sm:flex sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-4 mt-4 sm:mt-10 max-w-md sm:max-w-none mx-auto sm:mx-0 px-0"
           >
-            <Link to="/properties" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" fullWidth className="sm:!w-auto min-h-[48px]" icon={<ArrowRight className="w-5 h-5" />}>
+            <Link to="/properties" className="col-span-2 sm:col-span-1 sm:w-auto">
+              <Button variant="primary" size="md" fullWidth className="sm:!w-auto sm:min-h-[48px] min-h-[44px] text-sm sm:text-base" icon={<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />}>
                 {t('hero.explore')}
               </Button>
             </Link>
-            <Link to="/properties" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" fullWidth className="sm:!w-auto min-h-[48px]" icon={<Calendar className="w-5 h-5" />}>
-                {t('hero.bookVisit')}
+            <Link to="/properties" className="sm:w-auto">
+              <Button variant="outline" size="md" fullWidth className="sm:!w-auto sm:min-h-[48px] min-h-[44px] text-sm sm:text-base" icon={<Calendar className="w-4 h-4 sm:w-5 sm:h-5" />}>
+                <span className="truncate">{t('hero.bookVisit')}</span>
               </Button>
             </Link>
-            <Link to="/dashboard/owner" className="w-full sm:w-auto">
-              <Button variant="ghost" size="lg" fullWidth className="sm:!w-auto min-h-[48px]">
+            <Link to="/dashboard/owner" className="sm:w-auto">
+              <Button variant="ghost" size="md" fullWidth className="sm:!w-auto sm:min-h-[48px] min-h-[44px] text-sm sm:text-base px-2">
                 {t('hero.list')}
               </Button>
             </Link>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 text-xs">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-white/40 text-xs">
           <span>{t('hero.scroll')}</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
@@ -117,7 +117,7 @@ export function HomePage() {
       <StatsBar />
 
       {/* Featured Properties */}
-      <section className="pt-24 pb-20 md:py-28 bg-brand-mist dark:bg-brand-charcoal">
+      <section className="pt-12 pb-16 sm:pt-24 sm:pb-20 md:py-28 bg-brand-mist dark:bg-brand-charcoal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow={t('home.featured.eyebrow')}

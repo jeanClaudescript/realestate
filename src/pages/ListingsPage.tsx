@@ -179,7 +179,7 @@ export function ListingsPage() {
             <div className="min-w-0">
               {view === 'split' && (
                 <div className="mb-6">
-                  <MapPreview compact />
+                  <MapPreview compact listings={filtered} title={t('listings.mapView')} />
                 </div>
               )}
               <div
