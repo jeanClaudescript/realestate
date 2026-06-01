@@ -12,6 +12,7 @@ const SEEDS = {
   ceo: 'ceo-innocent-portrait',
   hero: 'kigali-hero-hills',
   map: 'rwanda-map-aerial',
+  car: ['luxury-sedan', 'suv-kigali', 'pickup-4x4', 'electric-car', 'sports-coupe', 'classic-ride'],
 } as const
 
 function picsum(seed: string, width = 1200, height = 800): string {
@@ -94,6 +95,15 @@ const ALL_SEEDS = [
   SEEDS.ceo,
   SEEDS.hero,
 ]
+
+export function imagesForVehicle(vehicleId: string, count = 3, bodyType?: string): string[] {
+  const pool = SEEDS.car
+  const offset = vehicleId.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % pool.length
+  const prefix = bodyType?.toLowerCase().includes('suv') ? 'suv' : 'car'
+  return Array.from({ length: count }, (_, i) =>
+    picsum(`${prefix}-${pool[(offset + i) % pool.length]}-${vehicleId}-${i}`)
+  )
+}
 
 export function propertyImage(seed: string, width = 1200, height = 800): string {
   const pick = ALL_SEEDS[Math.abs(hashCode(seed)) % ALL_SEEDS.length]

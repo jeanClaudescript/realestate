@@ -49,6 +49,8 @@ export interface Property {
   investment?: InvestmentInsight
   agentId: string
   featured?: boolean
+  /** Premium / beautiful homes showcase */
+  luxury?: boolean
 }
 
 export interface Agent {
