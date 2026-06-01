@@ -14,6 +14,8 @@ import { useLocale } from '@/context/LocaleContext'
 
 interface MapPreviewProps {
   compact?: boolean
+  /** Short strip for listings page — does not push cards far down */
+  embedded?: boolean
   title?: string
   locationLabel?: string
   /** Listings to plot — defaults to Kigali neighborhood pins */
@@ -35,6 +37,7 @@ const DEFAULT_PINS = Object.entries(NEIGHBORHOOD_MAP)
 
 export function MapPreview({
   compact,
+  embedded,
   title,
   locationLabel = 'Kigali, Rwanda',
   listings = [],
@@ -54,11 +57,15 @@ export function MapPreview({
 
   const mapTitle = title ?? t('home.map.title')
 
+  const heightClass = embedded
+    ? 'min-h-[180px] max-h-[220px] sm:min-h-[200px] sm:max-h-[240px]'
+    : compact
+      ? 'min-h-[280px] sm:min-h-[320px]'
+      : 'min-h-[380px] sm:min-h-[420px]'
+
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl sm:rounded-3xl border border-brand-gold/20 bg-brand-charcoal shadow-luxury ${
-        compact ? 'min-h-[320px] sm:min-h-[360px]' : 'min-h-[380px] sm:min-h-[420px]'
-      }`}
+      className={`relative overflow-hidden rounded-xl sm:rounded-2xl border border-brand-gold/20 bg-brand-charcoal shadow-luxury ${heightClass}`}
     >
       {/* Real map base */}
       <iframe
@@ -84,8 +91,16 @@ export function MapPreview({
       />
 
       {/* Top toolbar */}
-      <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-20 flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-        <div className="glass-on-media rounded-xl sm:rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 max-w-md">
+      <div
+        className={`absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-3 z-20 flex flex-col sm:flex-row sm:items-start justify-between gap-2 ${
+          embedded ? 'pointer-events-none' : ''
+        }`}
+      >
+        <div
+          className={`glass-on-media rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 max-w-md ${
+            embedded ? 'hidden sm:block' : ''
+          }`}
+        >
           <div className="flex items-center gap-2 mb-1">
             <div className="w-8 h-8 rounded-lg bg-brand-gold/20 flex items-center justify-center border border-brand-gold/30">
               <Layers className="w-4 h-4 text-brand-gold" />
@@ -99,8 +114,10 @@ export function MapPreview({
           </p>
         </div>
 
-        <div className="flex items-center gap-2 self-end sm:self-auto">
-          <div className="glass-on-media rounded-xl p-1 flex gap-0.5">
+        <div
+          className={`flex items-center gap-2 self-end sm:self-auto ${embedded ? 'pointer-events-auto' : ''}`}
+        >
+          <div className={`glass-on-media rounded-lg p-0.5 flex gap-0.5 ${embedded ? 'hidden' : ''}`}>
             <button
               type="button"
               onClick={() => setLayer('listings')}
@@ -133,7 +150,7 @@ export function MapPreview({
       </div>
 
       {/* Pins */}
-      <div className="absolute inset-0 z-10 pt-24 sm:pt-20 pb-16">
+      <div className={`absolute inset-0 z-10 ${embedded ? 'pt-12 pb-10' : 'pt-24 sm:pt-20 pb-16'}`}>
         <AnimatePresence>
           {pins.map((pin) => {
             const isActive = activePin === pin.id

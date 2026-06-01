@@ -14,6 +14,7 @@ export interface PropertyFiltersProps {
   onSortChange: (sort: string) => void
   onClear: () => void
   compact?: boolean
+  dense?: boolean
 }
 
 export function PropertyFilters({
@@ -27,6 +28,7 @@ export function PropertyFilters({
   onSortChange,
   onClear,
   compact = false,
+  dense = false,
 }: PropertyFiltersProps) {
   const { t } = useLocale()
 
@@ -42,11 +44,17 @@ export function PropertyFilters({
     selectedTypes.length + (verifiedOnly ? 1 : 0) + (priceRange[1] < priceFilterMax ? 1 : 0)
 
   return (
-    <div className="space-y-6 text-brand-charcoal dark:text-white">
+    <div
+      className={`text-brand-charcoal dark:text-white ${dense ? 'space-y-3.5' : 'space-y-6'}`}
+    >
       {!compact && (
-        <div className="flex items-center justify-between">
-          <h3 className="font-display text-lg font-semibold flex items-center gap-2">
-            <SlidersHorizontal className="w-5 h-5 text-brand-gold" />
+        <div className="flex items-center justify-between gap-2">
+          <h3
+            className={`font-display font-semibold flex items-center gap-2 ${
+              dense ? 'text-base' : 'text-lg'
+            }`}
+          >
+            <SlidersHorizontal className={`text-brand-gold ${dense ? 'w-4 h-4' : 'w-5 h-5'}`} />
             {t('filters.title')}
             {activeCount > 0 && (
               <span className="text-xs font-sans bg-brand-gold text-brand-charcoal px-2 py-0.5 rounded-full">
@@ -57,7 +65,9 @@ export function PropertyFilters({
           <button
             type="button"
             onClick={onClear}
-            className="text-sm text-brand-gold-dark hover:text-brand-gold flex items-center gap-1 min-h-[44px] px-2"
+            className={`text-brand-gold-dark hover:text-brand-gold flex items-center gap-1 px-1 ${
+              dense ? 'text-xs min-h-[36px]' : 'text-sm min-h-[44px] px-2'
+            }`}
           >
             <X className="w-3.5 h-3.5" />
             {t('filters.clear')}
@@ -66,7 +76,9 @@ export function PropertyFilters({
       )}
 
       <div>
-        <label className="text-sm font-medium text-muted block mb-3">{t('filters.price')}</label>
+        <label className={`font-medium text-muted block ${dense ? 'text-xs mb-1.5' : 'text-sm mb-3'}`}>
+          {t('filters.price')}
+        </label>
         <input
           type="range"
           min={0}
@@ -85,14 +97,18 @@ export function PropertyFilters({
       </div>
 
       <div>
-        <label className="text-sm font-medium text-muted block mb-3">{t('filters.type')}</label>
-        <div className="flex flex-wrap gap-2">
+        <label className={`font-medium text-muted block ${dense ? 'text-xs mb-1.5' : 'text-sm mb-3'}`}>
+          {t('filters.type')}
+        </label>
+        <div className={`flex flex-wrap ${dense ? 'gap-1.5' : 'gap-2'}`}>
           {types.map(({ id, labelKey }) => (
             <button
               key={id}
               type="button"
               onClick={() => onTypeToggle(id)}
-              className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors min-h-[44px] ${
+              className={`rounded-full font-medium transition-colors ${
+                dense ? 'px-2.5 py-1.5 text-xs min-h-[36px]' : 'px-4 py-2.5 text-sm min-h-[44px]'
+              } ${
                 selectedTypes.includes(id)
                   ? 'bg-brand-gold text-brand-charcoal shadow-sm'
                   : 'bg-brand-cream dark:bg-white/10 text-brand-charcoal/70 dark:text-white/80 hover:bg-brand-gold/20'
@@ -104,22 +120,28 @@ export function PropertyFilters({
         </div>
       </div>
 
-      <label className="flex items-center gap-3 cursor-pointer min-h-[44px]">
+      <label
+        className={`flex items-center gap-2 cursor-pointer ${dense ? 'min-h-[36px]' : 'min-h-[44px]'}`}
+      >
         <input
           type="checkbox"
           checked={verifiedOnly}
           onChange={onVerifiedToggle}
-          className="w-5 h-5 rounded accent-brand-gold"
+          className={`rounded accent-brand-gold ${dense ? 'w-4 h-4' : 'w-5 h-5'}`}
         />
-        <span className="text-sm font-medium">{t('filters.verified')}</span>
+        <span className={`font-medium ${dense ? 'text-xs' : 'text-sm'}`}>{t('filters.verified')}</span>
       </label>
 
       <div>
-        <label className="text-sm font-medium text-muted block mb-2">{t('filters.sort')}</label>
+        <label className={`font-medium text-muted block ${dense ? 'text-xs mb-1' : 'text-sm mb-2'}`}>
+          {t('filters.sort')}
+        </label>
         <select
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value)}
-          className="w-full border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold min-h-[44px] surface-card text-brand-charcoal dark:text-white"
+          className={`w-full border border-black/10 dark:border-white/10 rounded-lg px-3 focus:outline-none focus:border-brand-gold surface-card text-brand-charcoal dark:text-white ${
+            dense ? 'py-2 text-xs min-h-[36px]' : 'py-3 text-sm min-h-[44px] rounded-xl px-4'
+          }`}
         >
           <option value="featured">{t('filters.sort.featured')}</option>
           <option value="price-asc">{t('filters.sort.priceAsc')}</option>
