@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-brand-charcoal antialiased bg-brand-mist
+      dark:bg-brand-charcoal dark:text-white transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+  .pb-mobile-bar {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  @media (min-width: 1024px) {
+    .pb-mobile-bar {
+      padding-bottom: 0;
+    }
+  }
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-brand-gold via-brand-gold-light to-brand-gold bg-clip-text text-transparent;
+  }
+  .glass-dark {
+    @apply bg-brand-charcoal/80 backdrop-blur-xl border border-white/10;
+  }
+  .glass-light {
+    @apply bg-white/90 dark:bg-brand-slate/95 backdrop-blur-xl border border-black/5 dark:border-white/10;
+  }
+  .surface-card {
+    @apply bg-white dark:bg-brand-slate border border-black/5 dark:border-white/10;
+  }
+  .surface-muted {
+    @apply bg-brand-cream dark:bg-white/5;
+  }
+  .text-muted {
+    @apply text-brand-charcoal/60 dark:text-white/60;
+  }
+}

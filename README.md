@@ -50,6 +50,21 @@ Open [http://localhost:5173](http://localhost:5173)
 | `/dashboard/owner` | Owner portal — listings, uploads, visits, payments |
 | `/dashboard/agent` | Agent portal — leads, funnel, messaging |
 | `/dashboard/admin` | Admin — verification, fraud, revenue |
+| `/login` | Sign in (demo — routes to dashboard) |
+| `/register` | Create account (demo) |
+| `/legal/privacy` | Privacy policy |
+| `/legal/terms` | Terms of service |
+| `/legal/compliance` | RDB compliance |
+| `/404` | Not found |
+
+## Deploy on Vercel
+
+1. Push this repo to GitHub.
+2. Import the project in [Vercel](https://vercel.com) — framework preset **Vite** is auto-detected.
+3. Build command: `npm run build` · Output directory: `dist` (configured in `vercel.json`).
+4. Deploy. Client-side routes use SPA rewrites so `/properties`, `/dashboard/owner`, etc. work on refresh.
+
+No environment variables are required for the current mock-data frontend.
 
 ## Documentation
 
