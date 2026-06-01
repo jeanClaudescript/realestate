@@ -30,42 +30,45 @@ export function HeroSearch() {
     navigate(`/properties?${params.toString()}`)
   }
 
+  const inputClass =
+    'w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-base text-white placeholder:text-white/40 focus:outline-none focus:border-brand-gold/50 min-h-[48px]'
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.6 }}
-      className="w-full max-w-4xl mx-auto"
+      className="w-full max-w-4xl mx-auto px-0 sm:px-0"
     >
-      <div className="glass-dark rounded-3xl p-2 shadow-luxury">
-        <div className="flex flex-wrap gap-1 p-1 mb-2">
+      <div className="glass-dark rounded-2xl sm:rounded-3xl p-2 sm:p-2 shadow-luxury">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1 p-1 mb-2">
           {tabs.map(({ id, labelKey, icon: Icon }) => (
             <button
               key={id}
               type="button"
               onClick={() => setActiveTab(id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-medium transition-all ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-medium min-h-[44px] transition-all ${
                 activeTab === id
                   ? 'bg-brand-gold text-brand-charcoal'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                  : 'text-white/70 hover:bg-white/5'
               }`}
             >
-              <Icon className="w-4 h-4" />
-              {t(labelKey)}
+              <Icon className="w-4 h-4 shrink-0" />
+              <span className="truncate">{t(labelKey)}</span>
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 p-2">
-          <div className="md:col-span-2 relative">
-            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 p-2">
+          <div className="sm:col-span-2 relative">
+            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10 pointer-events-none" />
             <input
               list="rwanda-locations"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
               placeholder={t('search.location')}
-              className="w-full bg-white/5 border border-white/10 rounded-2xl pl-11 pr-4 py-3.5 text-white placeholder:text-white/40 focus:outline-none focus:border-brand-gold/50 min-h-[48px]"
+              className={`${inputClass} pl-11`}
             />
             <datalist id="rwanda-locations">
               {[...kigaliNeighborhoods, ...districts].map((loc) => (
@@ -73,23 +76,15 @@ export function HeroSearch() {
               ))}
             </datalist>
           </div>
-          <input
-            type="text"
-            placeholder={t('search.budget')}
-            className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder:text-white/40 focus:outline-none focus:border-brand-gold/50"
-          />
-          <input
-            type="text"
-            placeholder={t('search.size')}
-            className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder:text-white/40 focus:outline-none focus:border-brand-gold/50"
-          />
+          <input type="text" placeholder={t('search.budget')} className={inputClass} />
+          <input type="text" placeholder={t('search.size')} className={inputClass} />
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 p-2">
+        <div className="flex flex-col gap-2 p-2">
           <button
             type="button"
             onClick={() => navigate('/properties')}
-            className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-white/70 hover:bg-white/5 text-sm border border-white/10 min-h-[48px]"
+            className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-white/70 hover:bg-white/5 text-sm border border-white/10 min-h-[48px] w-full"
           >
             <SlidersHorizontal className="w-4 h-4" />
             {t('search.filters')}
@@ -98,7 +93,7 @@ export function HeroSearch() {
             variant="primary"
             size="lg"
             fullWidth
-            className="sm:flex-1"
+            className="min-h-[48px]"
             icon={<Search className="w-5 h-5" />}
             onClick={handleSearch}
           >

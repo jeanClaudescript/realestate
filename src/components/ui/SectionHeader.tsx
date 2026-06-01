@@ -21,7 +21,7 @@ export function SectionHeader({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`mb-12 md:mb-16 ${align === 'center' ? 'text-center max-w-2xl mx-auto' : 'max-w-2xl'}`}
+      className={`mb-8 sm:mb-12 md:mb-16 px-0.5 ${align === 'center' ? 'text-center max-w-2xl mx-auto' : 'max-w-2xl'}`}
     >
       {eyebrow && (
         <p
@@ -33,7 +33,7 @@ export function SectionHeader({
         </p>
       )}
       <h2
-        className={`font-display text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight ${
+        className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight break-words ${
           light ? 'text-white' : 'text-brand-charcoal dark:text-white'
         }`}
       >
@@ -41,7 +41,7 @@ export function SectionHeader({
       </h2>
       {subtitle && (
         <p
-          className={`mt-4 text-lg leading-relaxed ${
+          className={`mt-3 sm:mt-4 text-base sm:text-lg leading-relaxed ${
             light ? 'text-white/70' : 'text-muted'
           }`}
         >

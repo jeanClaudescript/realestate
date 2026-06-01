@@ -42,7 +42,7 @@ export function HomePage() {
   return (
     <PageLayout>
       {/* Cinematic Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <video
           autoPlay
           muted
@@ -58,7 +58,7 @@ export function HomePage() {
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/70 via-brand-charcoal/50 to-brand-charcoal" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 text-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,10 +67,10 @@ export function HomePage() {
             <Badge variant="dark" icon={<Sparkles className="w-3 h-3" />}>
               {t('hero.badge')}
             </Badge>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white mt-6 leading-[1.1] max-w-4xl mx-auto">
+            <h1 className="font-display text-[1.65rem] leading-tight min-[400px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white mt-4 sm:mt-6 max-w-4xl mx-auto px-1">
               {t('hero.title')}
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed px-1">
               {t('hero.subtitle')}
             </p>
           </motion.div>
@@ -83,20 +83,20 @@ export function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
+            className="flex flex-col w-full max-w-sm sm:max-w-none sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10 px-2 sm:px-0"
           >
-            <Link to="/properties">
-              <Button variant="primary" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
+            <Link to="/properties" className="w-full sm:w-auto">
+              <Button variant="primary" size="lg" fullWidth className="sm:!w-auto min-h-[48px]" icon={<ArrowRight className="w-5 h-5" />}>
                 {t('hero.explore')}
               </Button>
             </Link>
-            <Link to="/properties">
-              <Button variant="outline" size="lg" icon={<Calendar className="w-5 h-5" />}>
+            <Link to="/properties" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" fullWidth className="sm:!w-auto min-h-[48px]" icon={<Calendar className="w-5 h-5" />}>
                 {t('hero.bookVisit')}
               </Button>
             </Link>
-            <Link to="/dashboard/owner">
-              <Button variant="ghost" size="lg">
+            <Link to="/dashboard/owner" className="w-full sm:w-auto">
+              <Button variant="ghost" size="lg" fullWidth className="sm:!w-auto min-h-[48px]">
                 {t('hero.list')}
               </Button>
             </Link>

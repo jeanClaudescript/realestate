@@ -217,7 +217,7 @@ export function ListingsPage() {
       </section>
 
       {compare.size > 0 && (
-        <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 glass-dark rounded-2xl px-4 sm:px-6 py-3 sm:py-4 flex items-center gap-3 sm:gap-4 shadow-luxury w-[calc(100%-1.5rem)] max-w-md safe-bottom">
+        <div className="fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] sm:bottom-6 left-1/2 -translate-x-1/2 z-40 glass-dark rounded-2xl px-3 sm:px-6 py-3 flex items-center gap-2 sm:gap-4 shadow-luxury w-[calc(100%-1rem)] max-w-md">
           <GitCompare className="w-5 h-5 text-brand-gold shrink-0" />
           <span className="text-white text-sm truncate flex-1">
             {compare.size} {t('compare.selected')}

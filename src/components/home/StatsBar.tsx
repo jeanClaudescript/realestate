@@ -3,7 +3,7 @@ import { platformStats } from '@/lib/mock-data'
 
 export function StatsBar() {
   return (
-    <section className="relative z-20 -mt-16 mx-4 sm:mx-6 lg:mx-8 max-w-5xl lg:mx-auto">
+    <section className="relative z-20 -mt-12 sm:-mt-16 mx-3 sm:mx-6 lg:mx-8 max-w-5xl lg:mx-auto px-0">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -13,9 +13,9 @@ export function StatsBar() {
         {platformStats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-brand-charcoal px-6 py-6 text-center"
+            className="bg-brand-charcoal px-3 py-4 sm:px-6 sm:py-6 text-center"
           >
-            <p className="font-display text-2xl md:text-3xl font-semibold text-brand-gold">
+            <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-brand-gold">
               {stat.value}
             </p>
             <p className="text-xs text-white/50 mt-1 uppercase tracking-wider">

@@ -64,7 +64,7 @@ export function LeadershipSection() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-3 gap-3 sm:gap-4 mb-8">
               {[
                 { icon: Award, label: t('ceo.stat1'), value: `${ceo.yearsExperience}+` },
                 { icon: Shield, label: t('ceo.stat2'), value: '100%' },

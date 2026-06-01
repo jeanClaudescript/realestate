@@ -32,7 +32,7 @@ export function MobileFilterBar({
 
   return (
     <>
-      <div className="lg:hidden sticky top-14 sm:top-16 z-40 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 mb-4 bg-brand-mist/95 dark:bg-brand-charcoal/95 backdrop-blur-md border-b border-black/5 dark:border-white/10">
+      <div className="lg:hidden sticky top-[3.5rem] sm:top-16 z-40 -mx-3 sm:-mx-6 px-3 sm:px-6 py-3 mb-4 bg-brand-mist/95 dark:bg-brand-charcoal/95 backdrop-blur-md border-b border-black/5 dark:border-white/10">
         <div className="flex items-center gap-2">
           <button
             type="button"

@@ -94,25 +94,25 @@ export function PropertyDetailPage() {
   return (
     <PageLayout>
       {/* Gallery Hero */}
-      <section className="pt-20 bg-brand-charcoal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <section className="pt-16 sm:pt-20 bg-brand-charcoal overflow-hidden">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
           <Link
             to="/properties"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-4"
+            className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm min-h-[44px]"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4 shrink-0" />
             {t('detail.back')}
           </Link>
         </div>
-        <div className="grid lg:grid-cols-3 gap-2 px-2 lg:px-4 max-w-[1600px] mx-auto">
-          <div className="lg:col-span-2 relative aspect-[16/10] lg:aspect-auto lg:min-h-[500px] rounded-2xl overflow-hidden">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2 px-2 sm:px-4 max-w-[1600px] mx-auto pb-2">
+          <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:col-span-2 lg:aspect-auto lg:min-h-[500px] rounded-xl sm:rounded-2xl overflow-hidden w-full">
             <SafeImage
               src={property.images[activeImage]}
               alt={property.title}
               fallbackSeed={property.id}
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 left-4 flex gap-2">
+            <div className="absolute top-3 left-3 right-14 flex flex-wrap gap-1.5 max-w-[85%]">
               {property.verified && (
                 <Badge variant="verified" icon={<CheckCircle2 className="w-3 h-3" />}>
                   Verified
@@ -142,13 +142,13 @@ export function PropertyDetailPage() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-1 lg:overflow-visible lg:pb-0">
             {property.images.map((img, i) => (
               <button
                 key={img}
                 type="button"
                 onClick={() => setActiveImage(i)}
-                className={`relative aspect-video rounded-xl overflow-hidden border-2 transition-colors ${
+                className={`relative shrink-0 w-24 h-16 sm:w-32 sm:h-20 lg:w-full lg:h-auto lg:aspect-video rounded-lg sm:rounded-xl overflow-hidden border-2 snap-start transition-colors ${
                   activeImage === i ? 'border-brand-gold' : 'border-transparent'
                 }`}
               >
@@ -159,9 +159,9 @@ export function PropertyDetailPage() {
         </div>
       </section>
 
-      <section className="py-8 sm:py-12 pb-mobile-bar">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-12">
+      <section className="py-6 sm:py-12 pb-mobile-bar overflow-x-hidden">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             <div className="lg:col-span-2 space-y-10">
               <div>
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
@@ -169,7 +169,7 @@ export function PropertyDetailPage() {
                     <p className="text-sm font-semibold uppercase tracking-wider text-brand-gold-dark mb-2">
                       {property.type} · {property.mode}
                     </p>
-                    <h1 className="font-display text-3xl md:text-4xl font-semibold text-brand-charcoal dark:text-white">
+                    <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-brand-charcoal dark:text-white break-words">
                       {property.title}
                     </h1>
                     <p className="flex items-center gap-2 mt-2 text-muted">
@@ -188,10 +188,10 @@ export function PropertyDetailPage() {
                     </button>
                   </div>
                 </div>
-                <p className="font-display text-3xl font-semibold text-brand-gold-dark">
+                <p className="font-display text-2xl sm:text-3xl font-semibold text-brand-gold-dark break-words">
                   {formatPrice(property.price, property.currency, property.mode)}
                 </p>
-                <div className="flex flex-wrap gap-4 mt-4">
+                <div className="flex flex-wrap gap-2 sm:gap-4 mt-4">
                   <TrustScore score={property.trustScore} size="lg" />
                   <Badge variant="gold">Inspection Approved</Badge>
                   <Badge variant="verified">Legal Docs Verified</Badge>

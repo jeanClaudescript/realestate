@@ -79,7 +79,7 @@ export function PropertyCard({
           <Badge variant="status">{t(statusKey)}</Badge>
         </div>
 
-        <div className="absolute top-3 right-3 flex gap-2">
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={(e) => {
@@ -87,7 +87,7 @@ export function PropertyCard({
               e.stopPropagation()
               onFavorite?.(property.id)
             }}
-            className={`p-2.5 rounded-full backdrop-blur-md transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+            className={`p-2 sm:p-2.5 rounded-full backdrop-blur-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center ${
               isFavorite ? 'bg-red-500 text-white' : 'bg-black/40 text-white hover:bg-black/60'
             }`}
             aria-label={t('card.save')}
@@ -101,7 +101,7 @@ export function PropertyCard({
               e.stopPropagation()
               onCompare?.(property.id)
             }}
-            className={`p-2.5 rounded-full backdrop-blur-md transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+            className={`p-2 sm:p-2.5 rounded-full backdrop-blur-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center ${
               isCompared ? 'bg-brand-gold text-brand-charcoal' : 'bg-black/40 text-white hover:bg-black/60'
             }`}
             aria-label={t('card.compare')}
@@ -126,7 +126,7 @@ export function PropertyCard({
         </div>
 
         <div className="absolute bottom-3 left-3 right-14 pr-2">
-          <p className="text-xl sm:text-2xl font-display font-semibold text-white drop-shadow-sm">
+          <p className="text-lg sm:text-2xl font-display font-semibold text-white drop-shadow-sm truncate">
             {formatPrice(property.price, property.currency, property.mode)}
           </p>
         </div>
