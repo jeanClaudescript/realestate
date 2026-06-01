@@ -111,8 +111,10 @@ export function PropertyCard({
               e.stopPropagation()
               onCompare?.(property.id)
             }}
-            className={`p-2 sm:p-2.5 rounded-full backdrop-blur-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center ${
-              isCompared ? 'bg-brand-gold text-brand-charcoal' : 'bg-black/40 text-white hover:bg-black/60'
+            className={`p-2 sm:p-2.5 rounded-full backdrop-blur-md transition-all min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center ${
+              isCompared
+                ? 'bg-brand-gold text-brand-charcoal ring-2 ring-white shadow-lg scale-105'
+                : 'bg-black/40 text-white hover:bg-black/60'
             }`}
             aria-label={t('card.compare')}
           >

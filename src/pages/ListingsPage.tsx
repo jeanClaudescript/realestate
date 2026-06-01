@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { LayoutGrid, Map, GitCompare } from 'lucide-react'
+import { LayoutGrid, Map } from 'lucide-react'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { PropertyCard } from '@/components/properties/PropertyCard'
 import { PropertyFilters } from '@/components/properties/PropertyFilters'
 import { MobileFilterBar } from '@/components/properties/MobileFilterBar'
 import { MapPreview } from '@/components/properties/MapPreview'
 import { CompareModal } from '@/components/properties/CompareModal'
+import { CompareDock } from '@/components/properties/CompareDock'
+import { MAX_COMPARE } from '@/lib/compare'
+import { useToast } from '@/context/ToastContext'
 import { properties } from '@/lib/mock-data'
 import { sortPropertiesForDisplay } from '@/lib/property-order'
 import { priceFilterMax } from '@/lib/rwanda'
@@ -17,6 +20,7 @@ const SORT_OPTIONS = ['featured', 'price-asc', 'price-desc', 'trust', 'newest'] 
 
 export function ListingsPage() {
   const { t } = useLocale()
+  const { showToast } = useToast()
   const [searchParams] = useSearchParams()
   const [showMap, setShowMap] = useState(false)
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
@@ -108,8 +112,15 @@ export function ListingsPage() {
   const toggleCompare = (id: string) => {
     setCompare((prev) => {
       const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else if (next.size < 3) next.add(id)
+      if (next.has(id)) {
+        next.delete(id)
+        return next
+      }
+      if (next.size >= MAX_COMPARE) {
+        showToast(t('compare.max'))
+        return prev
+      }
+      next.add(id)
       return next
     })
   }
@@ -231,21 +242,18 @@ export function ListingsPage() {
         </div>
       </section>
 
-      {compare.size > 0 && (
-        <div className="fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] sm:bottom-6 left-1/2 -translate-x-1/2 z-40 glass-dark rounded-2xl px-3 sm:px-6 py-3 flex items-center gap-2 sm:gap-4 shadow-luxury w-[calc(100%-1rem)] max-w-md">
-          <GitCompare className="w-5 h-5 text-brand-gold shrink-0" />
-          <span className="text-sm truncate flex-1">
-            {compare.size} {t('compare.selected')}
-          </span>
-          <button
-            type="button"
-            className="text-brand-gold text-sm font-semibold hover:underline shrink-0 min-h-[44px] px-2"
-            onClick={() => setCompareOpen(true)}
-          >
-            {t('compare.now')}
-          </button>
-        </div>
-      )}
+      <CompareDock
+        properties={compareProperties}
+        onRemove={(id) => {
+          setCompare((prev) => {
+            const next = new Set(prev)
+            next.delete(id)
+            return next
+          })
+        }}
+        onOpen={() => setCompareOpen(true)}
+        onClear={() => setCompare(new Set())}
+      />
 
       <CompareModal
         open={compareOpen}
